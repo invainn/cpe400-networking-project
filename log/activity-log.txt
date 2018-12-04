@@ -1,0 +1,15 @@
+dynamic-routing-sim
+-------------------
+
+Node Failure(s): 8 16 
+Node Failure(s): 7 8 12 15 
+Node Failure(s): 6 11 
+Node Failure(s): 6 16 
+Node Failure(s): 2 9 10 14 
+Node Failure(s): 12 14 
+Node Failure(s): 8 12 16 
+Node Failure(s): 2 
+Node Failure(s): 11 17 
+Node Failure(s): 7 11 
+Node Failure(s): 2 11 12 14 
+Node Failure(s): 14 16 
