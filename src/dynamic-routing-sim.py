@@ -38,7 +38,7 @@ def initGraph():
     edgeInit(edges)
 
 
-# read edges from a file... cus irwin fucking loves file i/o
+# read edges from a file
 def readEdgesFromFile():
     edges = [tuple(map(int, line.rstrip('\n').split(' '))) for line in open('../app-data/edges.txt')]
     return edges
