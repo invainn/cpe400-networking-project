@@ -15,3 +15,8 @@
 	Link: https://matplotlib.org/users/installing.html
 
 * TO RUN THE PROGRAM: Type 'python dynamic-routing-sim.py' without the single quotes.
+
+* OUTPUT:
+-Displays the nodes that fail at every interval
+-Displays Dijkstra's Shortest Path (if a path exists) from the source node (node 1) to the destination node (node 25)
+-Displays the number of hops (if a path exists) or 'Destination unreachable' (if a path does not exist)
