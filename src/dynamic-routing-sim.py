@@ -111,8 +111,8 @@ def updateGraph(num):
         outputFile.write("\n")
     except nx.exception.NetworkXNoPath:
         # print to the console if no path exists
-        print("No path from source: node (1) to destination: node (25)")
-        outputFile.write("No path from source: node (1) to destination: node (25)")
+        print("No available path from [source]: node (1) to [destination]: node (25)")
+        outputFile.write("No available path from [source]: node (1) to [destination]: node (25)")
         print("Destination unreachable.")
         outputFile.write("Destination unreachable.")
         outputFile.write("\n")
