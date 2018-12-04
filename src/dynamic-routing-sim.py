@@ -34,7 +34,6 @@ def initNodeColor():
 def initGraph():
     outputFile.write('dynamic-routing-sim' + '\n')
     outputFile.write('-------------------' + '\n')
-    outputFile.write('\n')
     edges = readEdgesFromFile()
     edgeInit(edges)
 
