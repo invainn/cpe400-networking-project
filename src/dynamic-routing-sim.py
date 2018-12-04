@@ -17,6 +17,8 @@ node_colors = ['blue' for x in range(1, 18)]
 # Build plot
 fig, ax = plt.subplots(figsize=(8, 6))
 
+# holds the node activity for the log-file.
+outputFile = open('../log/activity-log.txt', 'w')
 
 # graph edge init function
 def edgeInit(edges):
@@ -30,6 +32,9 @@ def initNodeColor():
 
 # initialize nx graph
 def initGraph():
+    outputFile.write('dynamic-routing-sim' + '\n')
+    outputFile.write('-------------------' + '\n')
+    outputFile.write('\n')
     edges = readEdgesFromFile()
     edgeInit(edges)
 
@@ -57,7 +62,7 @@ def updateGraph(num):
     failures = {random.randint(2, 17) for x in range(0, number_of_failures)}
     # create a node failure
     # node_failure = random.randint(2,17)
-    
+
     edges = []
     # make copy of edges to be reinserted
     for failure in failures:
@@ -88,7 +93,14 @@ def updateGraph(num):
     nx.draw(G, pos=pos, node_color=node_colors, with_labels=True, alpha=.8, font_weight='bold', ax=ax)
 
     # add title with node failure
-    title = "Node failure at Node(s): " + ''.join(str(node) + ' ' for node in sorted(failures))
+    title = "Node Failure(s): " + ''.join(str(node) + ' ' for node in sorted(failures))
+
+    # keep a running list of node failures in the console
+    print(title)
+
+    # write the node activity to a file
+    outputFile.write(title + '\n')
+
     ax.set_title(title, fontsize="8", fontweight="bold")
 
     # reset node for next iteration
@@ -121,5 +133,7 @@ initGraph()
 ani = matplotlib.animation.FuncAnimation(fig, updateGraph, frames=30, interval=9000, repeat=True)
 plt.show()
 
+# close the output file when the program ends
+print('Data written to log/activity-log.txt')
 
 

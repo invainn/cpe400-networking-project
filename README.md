@@ -2,7 +2,7 @@
 
 * AUTHORS: Aaron Mcanerney, Nikkolas Irwin, and Anthony Bennett
 
-* DESCRIPTION: Simulates a mesh network where nodes and links may fail. Nodes and links may fail intermittently. As an input to the simulation, each node and link will have a certain probability to fail. When such failure occurs, the network must adapt and re-route to avoid the faulty link/node.
+* DESCRIPTION: Simulates a mesh network where nodes and links may fail. Nodes and links may fail intermittently. As an input to the simulation, each node and link will have a certain probability to fail. When such failure occurs, the network adapts and re-routes (using Dijkstra's all-pairs shortest path) to avoid the faulty link/node(s).
 
 * GETTING STARTED:
 1. Download and install Python 3.7.1 or greater
