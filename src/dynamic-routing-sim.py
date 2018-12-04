@@ -7,15 +7,15 @@ import itertools
 
 # nx graph object to be used by the whole file
 G = nx.Graph()
-nodes = [x for x in range(1,18)]
+nodes = [x for x in range(1, 18)]
 G.add_nodes_from(nodes)
 pos = nx.spring_layout(G)
 
 # set initial node color
-node_colors = ['blue' for x in range(1,18)]
+node_colors = ['blue' for x in range(1, 18)]
 
 # Build plot
-fig, ax = plt.subplots(figsize=(8,6))
+fig, ax = plt.subplots(figsize=(8, 6))
 
 
 # graph edge init function
@@ -41,7 +41,7 @@ def readEdgesFromFile():
 
 
 def calculateFailurePercentage():
-    return random.randint(1,5)
+    return random.randint(1, 5)
 
 
 # update function for graph animation
@@ -54,7 +54,7 @@ def updateGraph(num):
     # how many nodes fail on a given iteration
     number_of_failures = calculateFailurePercentage()
 
-    failures = {random.randint(2,17) for x in range(0,number_of_failures)}
+    failures = {random.randint(2, 17) for x in range(0, number_of_failures)}
     # create a node failure
     # node_failure = random.randint(2,17)
     
@@ -83,9 +83,9 @@ def updateGraph(num):
         node_colors[x] = 'red'
 
     # update the graph
-    nx.draw_networkx_edges(G, pos=pos, edgelist = path_edges, width=4, alpha=0.2, edge_color='b')
-    nx.draw_networkx_edges(G, pos=pos, edgelist = all_edges, width=2, alpha=0.3, edge_color='r')
-    nx.draw(G, pos=pos,node_color = node_colors, with_labels=True,alpha=.8, font_weight='bold', ax=ax)
+    nx.draw_networkx_edges(G, pos=pos, edgelist=path_edges, width=4, alpha=0.2, edge_color='b')
+    nx.draw_networkx_edges(G, pos=pos, edgelist=all_edges, width=2, alpha=0.3, edge_color='r')
+    nx.draw(G, pos=pos, node_color=node_colors, with_labels=True, alpha=.8, font_weight='bold', ax=ax)
 
     # add title with node failure
     title = "Node failure at Node(s): " + ''.join(str(node) + ' ' for node in sorted(failures))
@@ -107,12 +107,13 @@ def createEdgesFromPath(path):
         paths = shortest.values()
         for l in paths:
             if len(l) > 1:
-                edges = [(x,y) for x,y in zip(l, l[1:])]
+                edges = [(x, y) for x, y in zip(l, l[1:])]
                 for edge in edges:
                     all_edges.add(edge)
 
     return all_edges
-    
+
+
 # create the initial network graph
 initGraph()
 
