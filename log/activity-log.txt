@@ -1,40 +1,66 @@
 dynamic-routing-sim
 -------------------
-Node Failure(s): 5 13 
-Node Failure(s): 8 17 
-Node Failure(s): 3 6 7 10 
-Node Failure(s): 9 15 
-Node Failure(s): 3 8 11 14 
-Node Failure(s): 2 7 12 15 
-Node Failure(s): 7 
-Node Failure(s): 3 4 12 
-Node Failure(s): 7 9 13 15 17 
-Node Failure(s): 7 10 15 
-Node Failure(s): 3 6 7 8 12 
-Node Failure(s): 5 
-Node Failure(s): 6 16 
-Node Failure(s): 11 15 16 
-Node Failure(s): 8 9 16 
-Node Failure(s): 6 8 9 
-Node Failure(s): 2 11 
-Node Failure(s): 8 15 
-Node Failure(s): 9 14 16 17 
-Node Failure(s): 8 
-Node Failure(s): 3 7 15 
-Node Failure(s): 2 12 15 
-Node Failure(s): 3 
-Node Failure(s): 3 4 
-Node Failure(s): 6 8 
-Node Failure(s): 3 4 5 9 17 
-Node Failure(s): 7 9 
-Node Failure(s): 10 15 
-Node Failure(s): 7 
-Node Failure(s): 3 9 12 14 17 
-Node Failure(s): 2 11 13 
-Node Failure(s): 15 16 
-Node Failure(s): 3 6 10 17 
-Node Failure(s): 11 
-Node Failure(s): 5 10 
-Node Failure(s): 9 13 
-Node Failure(s): 3 4 12 13 17 
-Node Failure(s): 2 6 11 12 13 
+Node Failure(s): 21 23 
+No path from source: node (1) to destination: node (25)Destination unreachable.
+Node Failure(s): 6 13 23 
+Dijkstra Shortest Path:[1, 18, 14, 21, 24, 25]
+Number of Hops: 6
+
+Node Failure(s): 15 19 21 
+No path from source: node (1) to destination: node (25)Destination unreachable.
+Node Failure(s): 5 11 15 20 
+Dijkstra Shortest Path:[1, 18, 14, 21, 24, 25]
+Number of Hops: 6
+
+Node Failure(s): 18 22 25 
+No path from source: node (1) to destination: node (25)Destination unreachable.
+Node Failure(s): 2 6 13 24 
+Dijkstra Shortest Path:[1, 18, 14, 21, 23, 25]
+Number of Hops: 6
+
+Node Failure(s): 2 9 12 14 
+Dijkstra Shortest Path:[1, 18, 19, 20, 21, 23, 25]
+Number of Hops: 7
+
+Node Failure(s): 2 21 
+No path from source: node (1) to destination: node (25)Destination unreachable.
+Node Failure(s): 9 17 21 
+No path from source: node (1) to destination: node (25)Destination unreachable.
+Node Failure(s): 7 9 13 
+Dijkstra Shortest Path:[1, 18, 14, 21, 23, 25]
+Number of Hops: 6
+
+Node Failure(s): 18 
+Dijkstra Shortest Path:[1, 2, 10, 11, 12, 14, 21, 23, 25]
+Number of Hops: 9
+
+Node Failure(s): 11 12 14 22 25 
+No path from source: node (1) to destination: node (25)Destination unreachable.
+Node Failure(s): 2 
+Dijkstra Shortest Path:[1, 18, 14, 21, 23, 25]
+Number of Hops: 6
+
+Node Failure(s): 4 
+Dijkstra Shortest Path:[1, 18, 14, 21, 23, 25]
+Number of Hops: 6
+
+Node Failure(s): 2 10 15 21 
+No path from source: node (1) to destination: node (25)Destination unreachable.
+Node Failure(s): 4 6 10 12 24 
+Dijkstra Shortest Path:[1, 18, 14, 21, 23, 25]
+Number of Hops: 6
+
+Node Failure(s): 16 17 25 
+No path from source: node (1) to destination: node (25)Destination unreachable.
+Node Failure(s): 6 10 
+Dijkstra Shortest Path:[1, 18, 14, 21, 23, 25]
+Number of Hops: 6
+
+Node Failure(s): 2 6 11 12 
+Dijkstra Shortest Path:[1, 18, 14, 21, 23, 25]
+Number of Hops: 6
+
+Node Failure(s): 3 11 15 17 19 
+Dijkstra Shortest Path:[1, 18, 14, 21, 23, 25]
+Number of Hops: 6
+
