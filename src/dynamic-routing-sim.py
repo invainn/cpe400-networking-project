@@ -7,12 +7,12 @@ import itertools
 
 # nx graph object to be used by the whole file
 G = nx.Graph()
-nodes = [x for x in range(1, 18)]
+nodes = [x for x in range(1, 26)]
 G.add_nodes_from(nodes)
 pos = nx.spring_layout(G)
 
 # set initial node color
-node_colors = ['blue' for x in range(1, 18)]
+node_colors = ['blue' for x in range(1, 26)]
 
 # Build plot
 fig, ax = plt.subplots(figsize=(8, 6))
@@ -58,7 +58,7 @@ def updateGraph(num):
     # how many nodes fail on a given iteration
     number_of_failures = calculateFailurePercentage()
 
-    failures = {random.randint(2, 17) for x in range(0, number_of_failures)}
+    failures = {random.randint(2, 25) for x in range(0, number_of_failures)}
     # create a node failure
     # node_failure = random.randint(2,17)
 
@@ -102,12 +102,30 @@ def updateGraph(num):
 
     ax.set_title(title, fontsize="8", fontweight="bold")
 
+    # try-except block which calculates the shortest path and number of hops based on the available nodes.
+    try:
+        print("Dijkstra Shortest Path:" + str(nx.dijkstra_path(G, 1, 25)))
+        outputFile.write("Dijkstra Shortest Path:" + str(nx.dijkstra_path(G, 1, 25)) + "\n")
+        print("Number of Hops: " + str(len(nx.dijkstra_path(G, 1, 25))))
+        outputFile.write("Number of Hops: " + str(len(nx.dijkstra_path(G, 1, 25))) + "\n")
+        outputFile.write("\n")
+    except nx.exception.NetworkXNoPath:
+        # print to the console if no path exists
+        print("No path from source: node (1) to destination: node (25)")
+        outputFile.write("No path from source: node (1) to destination: node (25)")
+        print("Destination unreachable.")
+        outputFile.write("Destination unreachable.")
+        outputFile.write("\n")
+
+
     # reset node for next iteration
     for x in range(len(node_colors) - number_of_failures, len(node_colors)):
         node_colors[x] = 'blue'
         
     # put edges back into graph for next iteration
     G.add_edges_from(all_edges)
+    # add a line of space between intervals
+    print()
 
 
 # create edges from the single source shortest path
