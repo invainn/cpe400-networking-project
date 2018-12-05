@@ -33,8 +33,7 @@
 # -Red nodes indicate nodes that have failed, become faulty, and are currently offline. The faulty nodes recover on
 # the next interval and are avoided for the current interval if a path from the source node (node 1) to the destination
 # node (node 25) exists.
-#
-# NOTE: Each interval is 9000 milliseconds (9 seconds) long.
+# -Each interval is 9000 milliseconds (9 seconds) long.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
