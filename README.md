@@ -20,7 +20,7 @@ GETTING STARTED: <br />
 	Link: https://matplotlib.org/users/installing.html
 
 TO RUN THE PROGRAM: <br />
----------------------------- <br />
+--------------------------- <br />
 Type 'python dynamic-routing-sim.py' without the single quotes.
 
 OUTPUT:
