@@ -5,7 +5,8 @@
 # Nikkolas Irwin
 # Anthony Bennett
 #
-# DESCRIPTION: Simulates a mesh network where nodes and links may fail. Nodes and links may fail intermittently.
+# DESCRIPTION:
+# Simulates a mesh network where nodes and links may fail. Nodes and links may fail intermittently.
 # As an input to the simulation, each node and link will have a certain probability to fail. When such failure occurs,
 # the network adapts and re-routes to avoid the faulty link/node(s). This program accomplishes the simulation by using
 # Dijkstra's algorithm to solve the All Pairs Shortest Path problem by varying the source node among all nodes in the
@@ -17,7 +18,8 @@
 # 3. Download and install NetworkX 2.2 Link: https://networkx.github.io/
 # 4. Download and install matplotlib 3.0.2 Link: https://matplotlib.org/users/installing.html
 #
-# TO RUN THE PROGRAM: Type 'python dynamic-routing-sim.py' without the single quotes.
+# TO RUN THE PROGRAM:
+# Type 'python dynamic-routing-sim.py' without the single quotes.
 #
 # OUTPUT:
 # -Displays the nodes that fail at every interval

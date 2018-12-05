@@ -5,7 +5,8 @@ AUTHORS:
 * Nikkolas Irwin
 * Anthony Bennett
 
-DESCRIPTION: Simulates a mesh network where nodes and links may fail. Nodes and links may fail intermittently. As an input to the simulation, each node and link will have a certain probability to fail. When such failure occurs, the network adapts and re-routes to avoid the faulty link/node(s). This program accomplishes the simulation by using Dijkstra's algorithm to solve the All Pairs Shortest Path problem by varying the source node among all nodes in the graph (except node 1, the source node) and recovering the path itself, not just the cost of the path.
+DESCRIPTION: <br />
+Simulates a mesh network where nodes and links may fail. Nodes and links may fail intermittently. As an input to the simulation, each node and link will have a certain probability to fail. When such failure occurs, the network adapts and re-routes to avoid the faulty link/node(s). This program accomplishes the simulation by using Dijkstra's algorithm to solve the All Pairs Shortest Path problem by varying the source node among all nodes in the graph (except node 1, the source node) and recovering the path itself, not just the cost of the path.
 
 GETTING STARTED: <br />
 1. Download and install Python 3.7.1 or greater
@@ -17,7 +18,8 @@ GETTING STARTED: <br />
 4. Download and install matplotlib 3.0.2
 	Link: https://matplotlib.org/users/installing.html
 
-TO RUN THE PROGRAM: Type 'python dynamic-routing-sim.py' without the single quotes.
+TO RUN THE PROGRAM: <br />
+Type 'python dynamic-routing-sim.py' without the single quotes.
 
 OUTPUT:
 * Displays the nodes that fail at every interval.
