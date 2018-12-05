@@ -86,9 +86,29 @@ def updateGraph(num):
     for x in range(len(node_colors) - number_of_failures, len(node_colors)):
         node_colors[x] = 'red'
 
-    # update the graph
-    nx.draw_networkx_edges(G, pos=pos, edgelist=path_edges, width=4, alpha=0.2, edge_color='b')
-    nx.draw_networkx_edges(G, pos=pos, edgelist=all_edges, width=2, alpha=0.3, edge_color='r')
+    # try-except block which calculates the shortest path and number of hops based on the available nodes.
+    try:
+        d_path = nx.dijkstra_path(G, 1, 25)
+        print("Dijkstra Shortest Path:" + str(d_path))
+        outputFile.write("Dijkstra Shortest Path:" + str(d_path) + "\n")
+        print("Number of Hops: " + str(len(d_path) - 1))
+        outputFile.write("Number of Hops: " + str(len(d_path) - 1) + "\n")
+        djisktra_edges = createEdgesDijsktras(d_path)
+        # update the graph
+        nx.draw_networkx_edges(G, pos=pos, edgelist=path_edges, width=4, alpha=0.2, edge_color='b')
+        nx.draw_networkx_edges(G, pos=pos, edgelist=all_edges, width=2, alpha=0.3, edge_color='r')
+        nx.draw_networkx_edges(G, pos=pos, edgelist=djisktra_edges, width=4, alpha=0.8, edge_color='g')
+        
+    except nx.exception.NetworkXNoPath:
+        # print to the console if no path exists
+        print("No available path from [source]: node (1) to [destination]: node (25)\n")
+        outputFile.write("No available path from [source]: node (1) to [destination]: node (25)\n")
+        print("Destination unreachable.")
+        outputFile.write("Destination unreachable.")
+        nx.draw_networkx_edges(G, pos=pos, edgelist=path_edges, width=4, alpha=0.2, edge_color='b')
+        nx.draw_networkx_edges(G, pos=pos, edgelist=all_edges, width=2, alpha=0.3, edge_color='r')
+
+    #draw updated graph
     nx.draw(G, pos=pos, node_color=node_colors, with_labels=True, alpha=.8, font_weight='bold', ax=ax)
 
     # add title with node failure
@@ -102,18 +122,7 @@ def updateGraph(num):
 
     ax.set_title(title, fontsize="8", fontweight="bold")
 
-    # try-except block which calculates the shortest path and number of hops based on the available nodes.
-    try:
-        print("Dijkstra Shortest Path:" + str(nx.dijkstra_path(G, 1, 25)))
-        outputFile.write("Dijkstra Shortest Path:" + str(nx.dijkstra_path(G, 1, 25)) + "\n")
-        print("Number of Hops: " + str(len(nx.dijkstra_path(G, 1, 25))))
-        outputFile.write("Number of Hops: " + str(len(nx.dijkstra_path(G, 1, 25))) + "\n")
-    except nx.exception.NetworkXNoPath:
-        # print to the console if no path exists
-        print("No available path from [source]: node (1) to [destination]: node (25)")
-        outputFile.write("No available path from [source]: node (1) to [destination]: node (25)")
-        print("Destination unreachable.")
-        outputFile.write("Destination unreachable.")
+    
 
     # reset node for next iteration
     for x in range(len(node_colors) - number_of_failures, len(node_colors)):
@@ -138,6 +147,11 @@ def createEdgesFromPath(path):
                     all_edges.add(edge)
 
     return all_edges
+
+def createEdgesDijsktras(path):
+    print("AHHH", str(path))
+    edges = [(x, y) for x, y in zip(path, path[1:])]
+    return edges
 
 
 # create the initial network graph
