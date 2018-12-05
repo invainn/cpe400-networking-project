@@ -1,6 +1,9 @@
 # cpe400-networking-project
 
-AUTHORS: Aaron Mcanerney, Nikkolas Irwin, and Anthony Bennett
+AUTHORS:
+* Aaron Mcanerney
+* Nikkolas Irwin
+* Anthony Bennett
 
 DESCRIPTION: Simulates a mesh network where nodes and links may fail. Nodes and links may fail intermittently. As an input to the simulation, each node and link will have a certain probability to fail. When such failure occurs, the network adapts and re-routes to avoid the faulty link/node(s). This program accomplishes the simulation by using Dijkstra's algorithm to solve the All Pairs Shortest Path problem by varying the source node among all nodes in the graph (except node 1, the source node) and recovering the path itself, not just the cost of the path.
 
