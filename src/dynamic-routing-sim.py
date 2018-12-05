@@ -149,7 +149,6 @@ def createEdgesFromPath(path):
     return all_edges
 
 def createEdgesDijsktras(path):
-    print("AHHH", str(path))
     edges = [(x, y) for x, y in zip(path, path[1:])]
     return edges
 
