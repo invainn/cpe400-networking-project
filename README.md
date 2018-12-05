@@ -10,12 +10,8 @@ DESCRIPTION: Simulates a mesh network where nodes and links may fail. Nodes and 
 GETTING STARTED: <br />
 1. Download and install Python 3.7.1 or greater
 	Link: https://www.python.org/
-2. Download and install Pip 18.1
-	Link: https://pypi.org/project/pip/
-3. Download and install NetworkX 2.2
-	Link: https://networkx.github.io/
-4. Download and install matplotlib 3.0.2
-	Link: https://matplotlib.org/users/installing.html
+2. Run the command <br /> 
+	`python -m pip install -r requirements.txt` 
 
 TO RUN THE PROGRAM: Type 'python dynamic-routing-sim.py' without the single quotes.
 

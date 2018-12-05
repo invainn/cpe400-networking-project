@@ -14,9 +14,7 @@
 #
 # GETTING STARTED:
 # 1. Download and install Python 3.7.1 or greater Link: https://www.python.org/
-# 2. Download and install Pip 18.1 Link: https://pypi.org/project/pip/
-# 3. Download and install NetworkX 2.2 Link: https://networkx.github.io/
-# 4. Download and install matplotlib 3.0.2 Link: https://matplotlib.org/users/installing.html
+# 2. Run the command `python -m pip install -r requirements.txt`
 #
 # TO RUN THE PROGRAM:
 # Type 'python dynamic-routing-sim.py' without the single quotes.
@@ -57,7 +55,7 @@ pos = nx.spring_layout(G)
 node_colors = ['blue' for x in range(1, 26)]
 
 # Build the plot.
-fig, ax = plt.subplots(figsize=(8, 6))
+fig, ax = plt.subplots(figsize=(10, 10))
 
 # Holds the node activity for the log-file.
 outputFile = open('../log/activity-log.txt', 'w')
@@ -65,12 +63,7 @@ outputFile = open('../log/activity-log.txt', 'w')
 
 # Graph edge init function.
 def edgeInit(edges):
-    G.add_edges_from(edges) 
-
-
-# Create color list for all nodes in graph.
-def initNodeColor():
-    return 
+    G.add_weighted_edges_from(edges)
 
 
 # Initialize the NetworkX graph.
@@ -83,7 +76,7 @@ def initGraph():
 
 # Read edges from a file.
 def readEdgesFromFile():
-    edges = [tuple(map(int, line.rstrip('\n').split(' '))) for line in open('../app-data/edges.txt')]
+    edges = [tuple(map(int, line.rstrip('\n').split(' ') + [str(random.randint(5, 10))])) for line in open('../app-data/edges.txt')]
     return edges
 
 
@@ -102,14 +95,8 @@ def updateGraph(num):
     number_of_failures = calculateFailurePercentage()
     failures = {random.randint(2, 25) for x in range(0, number_of_failures)}
 
-    # Store the edges in a list.
-    edges = []
-    # Make a copy of the edges to be reinserted.
-    for failure in failures:
-        edges.append(copy.deepcopy(list(G.edges(failure))))
-
-    # Flatten the list.
-    all_edges = list(itertools.chain(*edges))
+    # Deep copy edges for next iteration.
+    all_edges = copy.deepcopy(G.edges)
 
     # Remove the node(s) from the graph.
     G.remove_nodes_from(failures)
@@ -141,10 +128,15 @@ def updateGraph(num):
     try:
         # Store Dijkstra's Shortest Path
         d_path = nx.dijkstra_path(G, 1, 25)
+        d_path_cost = nx.dijkstra_path_length(G, 1, 25)
 
         # Display Dijkstra's Shortest Path and write the results to the output file.
         print("Dijkstra Shortest Path:" + str(d_path))
         outputFile.write("Dijkstra Shortest Path:" + str(d_path) + "\n")
+
+        # Display Dijkstra's Shortest Path cost and write the results to the output file.
+        print(f"Cost of Path: {d_path_cost}")
+        outputFile.write(f"Cost of Path: {d_path_cost}\n")
 
         # Display the number of hops and write the results to the output file.
         print("Number of Hops: " + str(len(d_path) - 1))
@@ -154,9 +146,7 @@ def updateGraph(num):
         djisktra_edges = createEdgesDijsktras(d_path)
 
         # Update the graph.
-        nx.draw_networkx_edges(G, pos=pos, edgelist=path_edges, width=4, alpha=0.2, edge_color='b')
-        nx.draw_networkx_edges(G, pos=pos, edgelist=all_edges, width=2, alpha=0.3, edge_color='r')
-        nx.draw_networkx_edges(G, pos=pos, edgelist=djisktra_edges, width=4, alpha=0.8, edge_color='g')
+        nx.draw_networkx_edges(G, pos=pos, edgelist=djisktra_edges, width=4, alpha=0.8, edge_color='g', label="Shortest Path")
 
     # If no path exists from the source node (node 1) to the destination node (node 25) then handle the
     # error gracefully by updating the GUI to show no path and print a message to the console and output file.
@@ -169,22 +159,28 @@ def updateGraph(num):
         print("Destination unreachable.")
         outputFile.write("Destination unreachable.\n")
 
-        # Update the graph.
-        nx.draw_networkx_edges(G, pos=pos, edgelist=path_edges, width=4, alpha=0.2, edge_color='b')
-        nx.draw_networkx_edges(G, pos=pos, edgelist=all_edges, width=2, alpha=0.3, edge_color='r')
+    # Get edge labels from all_edges
+    labels = nx.get_edge_attributes(G, 'weight')
 
     # Draw the updated graph.
+    nx.draw_networkx_edges(G, pos=pos, edgelist=path_edges, width=4, alpha=0.2, edge_color='b', label="Active Nodes")
+    nx.draw_networkx_edges(G, pos=pos, edgelist=all_edges, width=2, alpha=0.3, edge_color='r', label="Inactive Nodes")
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+
     nx.draw(G, pos=pos, node_color=node_colors, with_labels=True, alpha=.8, font_weight='bold', ax=ax)
 
     # Set the figure title.
     ax.set_title(title, fontsize="8", fontweight="bold")
+    ax.legend()
 
     # Reset the node(s) for next iteration
     for x in range(len(node_colors) - number_of_failures, len(node_colors)):
         node_colors[x] = 'blue'
         
     # Put the edges back into graph for next iteration.
-    G.add_edges_from(all_edges)
+    G.clear()
+    G.add_edges_from(all_edges.data())
+
     # Add a line of space between intervals.
     print()
 
