@@ -88,18 +88,25 @@ def updateGraph(num):
 
     # add title with node failure
     title = "Node Failure(s): " + ''.join(str(node) + ' ' for node in sorted(failures))
-    
+
+    # keep a running list of node failures in the console
+    print(title)
+
     # write the node activity to a file
     outputFile.write('\n' + title + '\n')
 
     # try-except block which calculates the shortest path and number of hops based on the available nodes.
     try:
         d_path = nx.dijkstra_path(G, 1, 25)
+
         print("Dijkstra Shortest Path:" + str(d_path))
         outputFile.write("Dijkstra Shortest Path:" + str(d_path) + "\n")
+
         print("Number of Hops: " + str(len(d_path) - 1))
-        outputFile.write("Number of Hops: " + str(len(d_path) - 1) + "\n\n")
+        outputFile.write("Number of Hops: " + str(len(d_path) - 1) + "\n")
+
         djisktra_edges = createEdgesDijsktras(d_path)
+
         # update the graph
         nx.draw_networkx_edges(G, pos=pos, edgelist=path_edges, width=4, alpha=0.2, edge_color='b')
         nx.draw_networkx_edges(G, pos=pos, edgelist=all_edges, width=2, alpha=0.3, edge_color='r')
@@ -107,22 +114,19 @@ def updateGraph(num):
         
     except nx.exception.NetworkXNoPath:
         # print to the console if no path exists
-        print("No available path from [source]: node (1) to [destination]: node (25)\n")
+        print("No available path from [source]: node (1) to [destination]: node (25)")
         outputFile.write("No available path from [source]: node (1) to [destination]: node (25)\n")
+
         print("Destination unreachable.")
         outputFile.write("Destination unreachable.\n")
+
         nx.draw_networkx_edges(G, pos=pos, edgelist=path_edges, width=4, alpha=0.2, edge_color='b')
         nx.draw_networkx_edges(G, pos=pos, edgelist=all_edges, width=2, alpha=0.3, edge_color='r')
 
-    #draw updated graph
+    # draw updated graph
     nx.draw(G, pos=pos, node_color=node_colors, with_labels=True, alpha=.8, font_weight='bold', ax=ax)
 
-    # keep a running list of node failures in the console
-    print(title)
-
     ax.set_title(title, fontsize="8", fontweight="bold")
-
-    
 
     # reset node for next iteration
     for x in range(len(node_colors) - number_of_failures, len(node_colors)):
