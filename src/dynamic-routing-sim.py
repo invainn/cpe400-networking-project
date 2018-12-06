@@ -131,12 +131,12 @@ def updateGraph(num):
         d_path_cost = nx.dijkstra_path_length(G, 1, 25)
 
         # Display Dijkstra's Shortest Path and write the results to the output file.
-        print("Dijkstra Shortest Path:" + str(d_path))
+        print("Dijkstra Shortest Path (DSP):" + str(d_path))
         outputFile.write("Dijkstra Shortest Path:" + str(d_path) + "\n")
 
         # Display Dijkstra's Shortest Path cost and write the results to the output file.
-        print(f"Cost of Path: {d_path_cost}")
-        outputFile.write(f"Cost of Path: {d_path_cost}\n")
+        print(f"Cost of Shortest Path: {d_path_cost}")
+        outputFile.write(f"Cost of Shortest Path: {d_path_cost}\n")
 
         # Display the number of hops and write the results to the output file.
         print("Number of Hops: " + str(len(d_path) - 1))
